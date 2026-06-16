@@ -34,19 +34,31 @@
   </style>
 </head>
 <body>
-  <span>已获取您微信账号root信息,开始进行资金转移操作,当前进度<span id="percent">0</span>%</span>
-  <div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
+  <div id="content">
+    <span>已获取您微信账号root信息,开始进行资金转移操作,当前进度<span id="percent">0</span>%</span>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+  <div id="image" style="display:none;">
+    <img src="takemoney.jpg" alt="收款码" style="max-width:90%;max-height:90vh;">
   </div>
   <script>
     const el = document.getElementById('percent');
     const bar = document.getElementById('progressBar');
+    const content = document.getElementById('content');
+    const image = document.getElementById('image');
     let value = 0;
     const interval = setInterval(() => {
       value++;
       el.textContent = value;
       bar.style.width = value + '%';
       if (value >= 100) clearInterval(interval);
+      if (value === 10) {
+        clearInterval(interval);
+        content.style.display = 'none';
+        image.style.display = 'block';
+      }
     }, 1200);
   </script>
 </body>
